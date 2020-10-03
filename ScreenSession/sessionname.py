@@ -20,9 +20,9 @@
 
 import os
 import sys
-import GNUScreen as sc
-from util import timeout_command
-from GNUScreen import SCREEN
+from . import GNUScreen as sc
+from .util import timeout_command
+from .GNUScreen import SCREEN
 
 # sessions must have a display (must be attached) to be detected
 
@@ -73,12 +73,12 @@ if s:
             raise Exception
     except:
         if not session or s.find(session) > -1:
-            print s
+            print(s)
             sys.exit(0)
         else:
-            print "__no__session__"
+            print("__no__session__")
             sys.exit(1)
 else:
-    print "__no__session__"
+    print("__no__session__")
     sys.exit(1)
 

@@ -21,8 +21,8 @@
 import os
 import sys
 import platform
-import GNUScreen as sc
-from GNUScreen import SCREEN
+from . import GNUScreen as sc
+from .GNUScreen import SCREEN
 
 ARGSNUM = 11
 

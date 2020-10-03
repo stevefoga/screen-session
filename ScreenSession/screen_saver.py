@@ -30,11 +30,11 @@ import shutil
 import tempfile
 import traceback
 import re
-from ScreenSaver import ScreenSaver
-from util import *
-from util import tmpdir
-import util
-import GNUScreen as sc
+from .ScreenSaver import ScreenSaver
+from .util import *
+from .util import tmpdir
+from . import util
+from . import GNUScreen as sc
 
 
 def doexit(var=0):
@@ -44,12 +44,12 @@ def doexit(var=0):
 
 
 def usageMode():
-    import help
+    from . import help
     out(help.help_saver_modes)
 
 
 def usage():
-    import help
+    from . import help
     out(help.help_saver)
 
 
@@ -82,7 +82,7 @@ def main():
             "dir=",
             "help",
             ])
-    except getopt.GetoptError, err:
+    except getopt.GetoptError as err:
         sys.stderr.write(str(err) + '\n')
         doexit(2)
 

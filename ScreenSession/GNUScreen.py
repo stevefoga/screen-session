@@ -23,17 +23,21 @@ import subprocess
 import re
 import sys
 import platform
-from util import tmpdir, tmpdir_source, removeit, remove
+from .util import tmpdir, tmpdir_source, removeit, remove
 
 SCREEN = os.getenv('SCREENBIN')
 if not SCREEN:
-    from util import which
+    from .util import which
     SCREEN = which('screen')[0]
 
 layout_files_prefix = os.path.join(tmpdir_source, "layout-")
 
 datadir = None
 dumpscreen_window_dirs = []
+
+
+def cmp(a, b):
+    return (a > b) - (a < b)
 
 def cleanup():
     for tdir in dumpscreen_window_dirs:
@@ -64,7 +68,7 @@ def make_dumpscreen_dirs(session):
 
 
 def dumpscreen_window(session, full=False):
-    from ScreenSaver import ScreenSaver
+    from .ScreenSaver import ScreenSaver
 
     #print('dumpscreen_window()')
 
@@ -161,7 +165,7 @@ def layout_end():
     if layout_focusminsize_x != '0' or layout_focusminsize_y != '0':
         layout_file.write('focusminsize %s %s\n' % (layout_focusminsize_x, layout_focusminsize_y))
     layout_file.close()
-    from ScreenSaver import ScreenSaver
+    from .ScreenSaver import ScreenSaver
     ss = ScreenSaver(layout_session)
     ss.source(layout_source_file)
 
@@ -215,7 +219,7 @@ def layout_load_regions(regions, wins_trans, new_term_size_x, new_term_sizy_y):
     layout_focusminsize_y = regions.focusminsize_y
 
 def dumpscreen_layout(session):
-    from ScreenSaver import ScreenSaver
+    from .ScreenSaver import ScreenSaver
     tdir = make_dumpscreen_dirs(session)
     ss = ScreenSaver(session)
     tfile = None
@@ -230,7 +234,7 @@ def dumpscreen_layout(session):
     return tfile
 
 def layout_dump(session):
-    from ScreenSaver import ScreenSaver
+    from .ScreenSaver import ScreenSaver
     tdir = make_dumpscreen_dirs(session)
     ss = ScreenSaver(session)
     tfile = None
@@ -272,7 +276,7 @@ def get_regions(tfile):
     return regions
 
 def gen_all_windows_fast(session, datadir):
-    from ScreenSaver import ScreenSaver
+    from .ScreenSaver import ScreenSaver
     ss = ScreenSaver(session)
     tfile = os.path.join(datadir, 'winlist')
     for line in open(tfile, "r"):
@@ -293,7 +297,7 @@ def gen_all_windows_fast(session, datadir):
 
 
 def gen_all_windows_full(session, datadir, reverse=False, sort=False):
-    from ScreenSaver import ScreenSaver
+    from .ScreenSaver import ScreenSaver
     import string
     ss = ScreenSaver(session)
     tfile = os.path.join(datadir, 'winlist')
@@ -441,7 +445,7 @@ def sort_by_ppid(cpids):
     pid_tail_c = -1
     cpids_sort = []
     for (i, pid) in enumerate(cpids):
-        if cppids[pid] not in cppids.keys():
+        if cppids[pid] not in list(cppids.keys()):
             cpids_sort.append(pid)
             pid_tail = pid
             break
@@ -502,7 +506,7 @@ def _get_tty_pids_ps_with_cache_gen(user):
         except:
             pass
     ndata = {}
-    for (key, val) in data.items():
+    for (key, val) in list(data.items()):
         nval = []
         parents = []
         pids = []

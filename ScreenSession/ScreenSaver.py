@@ -34,10 +34,10 @@ import re
 import linecache
 import datetime
 
-from util import out, requireme, linkify, which, timeout_command
-import util
-import GNUScreen as sc
-from GNUScreen import SCREEN
+from .util import out, requireme, linkify, which, timeout_command
+from . import util
+from . import GNUScreen as sc
+from .GNUScreen import SCREEN
 
 
 class ScreenSaver(object):
@@ -294,7 +294,7 @@ class ScreenSaver(object):
                         win[7],
                         nproc,
                         ))
-            except Exception,x:
+            except Exception as x:
                 sys.stderr.write('%d Unable to load window ( %s )\n' %
                         (id, str(x)))
 
@@ -900,12 +900,12 @@ class ScreenSaver(object):
                                 blacklist = False
                             cpids_data.append(pidinfo + tuple([blacklist]))
                             ncpids.append(pid)
-                        except Exception,x:
+                        except Exception as x:
                             if cwin != homewindow:
                                 errors.append('%s PID %s: Unable to access ( %s )' %
                                     (cwin, pid, str(x)))
                     cpids = ncpids
-                except Exception,x:
+                except Exception as x:
                     errors.append('%s Unable to access %s ( %s )' %
                             (cwin, str(ctty), str(x)))
                     cpids=[]
@@ -984,7 +984,7 @@ class ScreenSaver(object):
             for f in glob.glob(os.path.join(findir, "hardcopy.*")):
                 open(f, "w")
         elif self.scroll:
-            import tools
+            from . import tools
             (scroll_groups, scroll_wins) = tools.subwindows(self.pid, sc.datadir,
                     self.scroll)
             out('Scrollback excluded groups: %s' % str(scroll_groups))
@@ -995,7 +995,7 @@ class ScreenSaver(object):
         # remove ignored windows
 
         if self.excluded:
-            import tools
+            from . import tools
             (excluded_groups, excluded_wins) = tools.subwindows(self.pid,
                     sc.datadir, self.excluded)
             out('Excluded groups: %s' % str(excluded_groups))
@@ -1073,7 +1073,7 @@ class ScreenSaver(object):
             return (None, None, None)
 
     def __load_layouts(self):
-        cdinfo = map(int, self.dinfo()[0:2])
+        cdinfo = list(map(int, self.dinfo()[0:2]))
         out('Terminal size: %s %s' % (cdinfo[0], cdinfo[1]))
         homewindow = self.homewindow
         (homelayout, homelayoutname) = self.get_layout_number()
@@ -1309,11 +1309,11 @@ exec 'mksession' fnameescape('%s') | exec 'wviminfo' fnameescape('%s')\n""" % \
                     filename = os.path.join(rollback_dir, line.strip())
                     try:
                         tshellvars = "shellvars_W%s_%s" % (winid, os.path.basename(filename).split("_",2)[2])
-                        print tshellvars
+                        print(tshellvars)
                         tshellvars = os.path.join(self.basedir, self.savedir,
                                 tshellvars)
                         shutil.move(filename, tshellvars)
-                        print filename,tshellvars
+                        print(filename,tshellvars)
                     except:
                         errors.append('Unable to rollback shellvars: %s' %
                                 filename)

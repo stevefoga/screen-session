@@ -20,9 +20,9 @@
 
 import os
 import sys
-import GNUScreen as sc
-from util import tmpdir, tmpdir_source, remove
-from ScreenSaver import ScreenSaver
+from . import GNUScreen as sc
+from .util import tmpdir, tmpdir_source, remove
+from .ScreenSaver import ScreenSaver
 
 
 def nest_layout(session, src_layuot, dst_layout):
@@ -33,7 +33,7 @@ def nest_layout(session, src_layuot, dst_layout):
 
     scs = ScreenSaver(session)
 
-    print('layouts src: %s dst: %s' % (src_layout, dst_layout))
+    print(('layouts src: %s dst: %s' % (src_layout, dst_layout)))
 
     regions_file_dst = regions_file = sc.dumpscreen_layout(scs.pid)
     regions_dst = sc.get_regions(regions_file)
@@ -52,8 +52,8 @@ def nest_layout(session, src_layuot, dst_layout):
 
     src_term_size = (int(regions_src.term_size_x), int(regions_src.term_size_y))
 
-    print ('dst_rsize: %s' % str(dst_rsize))
-    print ('src_term_size: %s' % str(src_term_size))
+    print(('dst_rsize: %s' % str(dst_rsize)))
+    print(('src_term_size: %s' % str(src_term_size)))
 
     scs.layout('select %s' % dst_layout, False)
     
@@ -66,18 +66,18 @@ def nest_layout(session, src_layuot, dst_layout):
     regions_new.regions = regions_dst.regions[:regions_dst.focus_offset]
 
     for (window, sizex, sizey) in regions_src.regions:
-        print('SRC REGION' + str((window,sizex,sizey)))
+        print(('SRC REGION' + str((window,sizex,sizey))))
         x = (int(sizex) * dst_rsize[0]) / src_term_size[0]
         y = (int(sizey) * dst_rsize[1]) / src_term_size[1]
-        print( '%s * %d / %d = %d' % (sizex, dst_rsize[0], src_term_size[0], x))
-        print( '%s * %d / %d = %d' % (sizey, dst_rsize[1], src_term_size[0], y))
+        print(( '%s * %d / %d = %d' % (sizex, dst_rsize[0], src_term_size[0], x)))
+        print(( '%s * %d / %d = %d' % (sizey, dst_rsize[1], src_term_size[0], y)))
         regions_new.regions.append((window, str(x), str(y)))
 
     regions_new.regions = regions_new.regions + regions_dst.regions[regions_dst.focus_offset+1:]
     
-    print('destination regions: '+ str(regions_dst.regions))
-    print('source regions: ' + str(regions_src.regions))
-    print('new regions: ' + str(regions_new.regions))
+    print(('destination regions: '+ str(regions_dst.regions)))
+    print(('source regions: ' + str(regions_src.regions)))
+    print(('new regions: ' + str(regions_new.regions)))
 
     sc.layout_begin(session)
     sc.layout_load_dump(open(src_dumpfile, 'r'))

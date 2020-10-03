@@ -21,7 +21,7 @@
 
 import os
 import sys
-import tools
+from . import tools
 session = (sys.argv)[1]
 tools.sort(session, tools.require_dumpscreen_window(session, False))
 tools.cleanup()

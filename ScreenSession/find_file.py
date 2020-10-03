@@ -19,16 +19,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
-import tools
+from . import tools
 
 session = (sys.argv)[1]
 files = (sys.argv)[2:]
 
 pids = tools.find_files_in_pids(files)
 try:
-    pids = map(int, pids)
+    pids = list(map(int, pids))
     for (win, title) in tools.find_pids_in_windows(session, tools.require_dumpscreen_window(session,
             False), pids):
-        print "%s %s" % (win, title)
+        print("%s %s" % (win, title))
 except:
     pass

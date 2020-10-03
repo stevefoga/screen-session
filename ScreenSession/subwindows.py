@@ -19,8 +19,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
-import tools
-import util
+from . import tools
+from . import util
 
 session = (sys.argv)[1]
 
@@ -28,6 +28,6 @@ windows = util.expand_numbers_list((sys.argv)[2:])
 
 (groups, subwindows) = tools.subwindows(session, tools.require_dumpscreen_window(session,
         False), windows)
-print 'groups:  %s' % (" ").join(["%s" % v for v in groups])
-print 'windows: %s' % (" ").join(["%s" % v for v in subwindows])
+print('groups:  %s' % (" ").join(["%s" % v for v in groups]))
+print('windows: %s' % (" ").join(["%s" % v for v in subwindows]))
 tools.cleanup()

@@ -22,9 +22,9 @@ import os
 import sys
 import signal
 import pickle
-import GNUScreen as sc
-from util import tmpdir
-from ScreenSaver import ScreenSaver
+from . import GNUScreen as sc
+from .util import tmpdir
+from .ScreenSaver import ScreenSaver
 import curses
 
 AUTOSEARCH_MIN_MATCH = 2
@@ -310,7 +310,7 @@ def menu_table(
 
                             #pid,cwin,clay,MAXTITLELEN,height = map( str_strip,f.readlines() )
 
-                            nd = map(str_strip, f.readlines())
+                            nd = list(map(str_strip, f.readlines()))
                             curwin = nd[3]
                             sel_num = curlay = nd[4]
                             MAXTITLELEN = int(nd[5])
@@ -425,7 +425,7 @@ def menu_table(
         elif x == curses.KEY_PPAGE:
             pos_y = pos_y - 5 > 0 and pos_y - 5 or 0
         elif x == ord('?'):
-            from help import help_layoutlist
+            from .help import help_layoutlist
             screen.erase()
             for (i, line) in enumerate(help_layoutlist.split('\n')):
                 try:
@@ -713,7 +713,7 @@ def run(session, requirecleanup_win, requirecleanup_lay, curwin, curlay,
         ret = 1
     curses.endwin()
     if NO_END:
-        from util import remove
+        from .util import remove
         remove(lock_and_com_file)
     if requirecleanup_lay:
         ss.command_at(False,

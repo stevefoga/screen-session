@@ -19,8 +19,8 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from ScreenSaver import ScreenSaver
-import GNUScreen as sc
+from .ScreenSaver import ScreenSaver
+from . import GNUScreen as sc
 import os
 from sys import stderr
 
@@ -40,7 +40,7 @@ def find_pids_in_windows(session, datadir, pids):
     #print(tty_and_pids)
 
     ttys = []
-    for (tty, tpids) in tty_and_pids.items():
+    for (tty, tpids) in list(tty_and_pids.items()):
 
         #print('%s %s %s'%(pids,tty,tpids))
 
@@ -112,7 +112,7 @@ def dump(ss, datadir, showpid=True, reverse=True, sort=False, groupids=[]):
                     sum_group += 1
                 elif ctype == 2:
                     sum_telnet += 1
-                print "----------------------------------------"
+                print("----------------------------------------")
                 lines = []
                 lines.append("%s TYPE %s\n" % (cwin, ctypestr))
                 if cgroupid == "-1":
@@ -157,21 +157,21 @@ def dump(ss, datadir, showpid=True, reverse=True, sort=False, groupids=[]):
                                     elif cmd[0] in ('vi', 'vim', 'viless', 'vimdiff'):
                                         sum_vim += 1
                                         lines[0] = lines[0][:-1] + " / VIM\n"
-                                except OSError,x:
+                                except OSError as x:
                                     lines.append("%s PID %s Unable to access pid data ( %s )\n" %
                                             (cwin, pid, str(x)))
-                        except Exception,x:
+                        except Exception as x:
                             lines.append("%s Unable to access PIDs associated with tty ( %s )\n" %
                                     (cwin,str(x)))
                 try:
-                    map(stdout.write, lines)
+                    list(map(stdout.write, lines))
                 except:
                     break
 
-        print 'WINDOWS: %d\t[ %d basic | %d group | %d zombie | %d telnet ]' % \
-            (sum_win, sum_basic, sum_group, sum_zombie, sum_telnet)
-        print 'PROCESS: %d\t[ %d primer | %d vim ]' % (sum_process_total,
-                sum_primer, sum_vim)
+        print('WINDOWS: %d\t[ %d basic | %d group | %d zombie | %d telnet ]' % \
+            (sum_win, sum_basic, sum_group, sum_zombie, sum_telnet))
+        print('PROCESS: %d\t[ %d primer | %d vim ]' % (sum_process_total,
+                sum_primer, sum_vim))
     except IOError:
         pass
 
@@ -187,7 +187,7 @@ def renumber(session, datadir):
         wins_trans[iwin] = iwin
 
     wins.sort(key=lambda wins: wins[0])
-    print wins_trans
+    print(wins_trans)
     i = 0
     for (win, groupid, ctype) in wins:
         if wins_trans[win] != i:
@@ -202,7 +202,7 @@ def renumber(session, datadir):
                 wins_trans[win] = -1
             wins_trans[i] = tmp
         i += 1
-    print wins_trans
+    print(wins_trans)
 
 
 def sort(session, datadir, key=None):
@@ -222,12 +222,12 @@ def sort(session, datadir, key=None):
         wins_trans[iwin] = iwin
 
     i = 0
-    for (group, props) in groups.items():
+    for (group, props) in list(groups.items()):
         try:
             props.sort(key=lambda wins: wins[3].lower())
         except:
-            print 'FAIL'
-            print str(len(props)) + ' : ' + group + ' : ' + str(props)
+            print('FAIL')
+            print(str(len(props)) + ' : ' + group + ' : ' + str(props))
             pass
 
         #print( str(len(props))+' : '+group + ' : ' + str(props))
@@ -327,8 +327,8 @@ def kill_group(session, datadir, groupids):
     ss = ScreenSaver(session)
     (excluded_groups, excluded_wins) = subwindows(session, datadir,
             groupids)
-    print 'Killing groups: %s' % str(excluded_groups)
-    print 'All killed windows: %s' % str(excluded_wins)
+    print('Killing groups: %s' % str(excluded_groups))
+    print('All killed windows: %s' % str(excluded_wins))
 
     for win in excluded_wins:
         ss.kill(win)

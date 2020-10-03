@@ -19,10 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
-import GNUScreen as sc
-from ScreenSaver import ScreenSaver
-import tools
-import util 
+from . import GNUScreen as sc
+from .ScreenSaver import ScreenSaver
+from . import tools
+from . import util 
 
 if __name__ == '__main__':
     session = (sys.argv)[1]

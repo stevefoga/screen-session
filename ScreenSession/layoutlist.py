@@ -20,8 +20,8 @@
 
 import os
 import sys
-from util import tmpdir
-from ScreenSaver import ScreenSaver
+from .util import tmpdir
+from .ScreenSaver import ScreenSaver
 
 if __name__ == '__main__':
     lltmpdir = os.path.join(tmpdir, '___layoutlist')
@@ -68,7 +68,7 @@ if __name__ == '__main__':
                 clay = ss.get_layout_number()[0]
                 f.close()
                 if layout_checkpoint:
-                    import layout
+                    from . import layout
                     layout.setup_dirs(session, clay)
                     layout.layout_checkpoint(session, clay)
                 f = open(lock_and_com_file, 'w')
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
     (currentlayout, currentlayoutname) = ss.get_layout_number()
     if layout_checkpoint:
-        import layout
+        from . import layout
         layout.setup_dirs(session, currentlayout)
         layout.layout_checkpoint(session, currentlayout)
     if newlay:
@@ -108,7 +108,7 @@ if __name__ == '__main__':
                   session, curwin, currentlayout, s_no_end, title_width,
                   autosearch, height))
     else:
-        import layoutlist_agent
+        from . import layoutlist_agent
         layoutlist_agent.MAXTITLELEN = title_width
         layoutlist_agent.NO_END = no_end
         layoutlist_agent.AUTOSEARCH_MIN_MATCH = int(autosearch)

@@ -19,11 +19,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
-import tools
+from . import tools
 
 session = (sys.argv)[1]
-pids = map(int, (sys.argv)[2:])
+pids = list(map(int, (sys.argv)[2:]))
 for (win, title) in tools.find_pids_in_windows(session, tools.require_dumpscreen_window(session,
         False), pids):
-    print "%s %s" % (win, title)
+    print("%s %s" % (win, title))
 tools.cleanup()
