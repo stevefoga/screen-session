@@ -34,7 +34,7 @@ import re
 import linecache
 import datetime
 
-from .util import out, requireme, linkify, which, timeout_command
+from util import out, requireme, linkify, which, timeout_command
 from . import util
 from . import GNUScreen as sc
 from GNUScreen import SCREEN
