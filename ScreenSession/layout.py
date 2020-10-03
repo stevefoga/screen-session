@@ -22,8 +22,8 @@ import os
 import sys
 import glob
 import time
-from .util import tmpdir, removeit
-from .ScreenSaver import ScreenSaver
+from util import tmpdir, removeit
+from ScreenSaver import ScreenSaver
 from . import GNUScreen as sc
 
 HISTLEN = 8

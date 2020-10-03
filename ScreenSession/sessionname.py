@@ -21,8 +21,8 @@
 import os
 import sys
 from . import GNUScreen as sc
-from .util import timeout_command
-from .GNUScreen import SCREEN
+from util import timeout_command
+from GNUScreen import SCREEN
 
 # sessions must have a display (must be attached) to be detected
 

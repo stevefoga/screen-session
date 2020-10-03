@@ -23,7 +23,7 @@ import subprocess
 import re
 import sys
 import platform
-from .util import tmpdir, tmpdir_source, removeit, remove
+from util import tmpdir, tmpdir_source, removeit, remove
 
 SCREEN = os.getenv('SCREENBIN')
 if not SCREEN:

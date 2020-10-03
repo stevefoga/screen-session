@@ -23,8 +23,8 @@ import sys
 import signal
 import pickle
 from . import GNUScreen as sc
-from .util import tmpdir
-from .ScreenSaver import ScreenSaver
+from util import tmpdir
+from ScreenSaver import ScreenSaver
 import curses
 
 AUTOSEARCH_MIN_MATCH = 2

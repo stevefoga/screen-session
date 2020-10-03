@@ -31,9 +31,9 @@ import signal
 from . import GNUScreen as sc
 from .GNUScreen import SCREEN
 from . import util
-from .util import tmpdir
-from .ScreenSaver import ScreenSaver
-from .help import VERSION
+from util import tmpdir
+from ScreenSaver import ScreenSaver
+from help import VERSION
 try:
     from subprocess import getoutput
 except ImportError:

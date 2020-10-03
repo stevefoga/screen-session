@@ -20,8 +20,8 @@
 
 import os
 import sys
-from .util import tmpdir
-from .ScreenSaver import ScreenSaver
+from util import tmpdir
+from ScreenSaver import ScreenSaver
 
 if __name__ == '__main__':
     lltmpdir = os.path.join(tmpdir, '___layoutlist')

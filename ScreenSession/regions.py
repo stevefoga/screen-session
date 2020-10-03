@@ -26,10 +26,10 @@ import signal
 import tempfile
 import pwd
 import copy
-from .util import tmpdir, tmpdir_source, remove
+from util import tmpdir, tmpdir_source, remove
 from . import GNUScreen as sc
-from .GNUScreen import SCREEN
-from .ScreenSaver import ScreenSaver
+from GNUScreen import SCREEN
+from ScreenSaver import ScreenSaver
 
 inputfile = "___regions-input-%d" % os.getpid()
 sourcefile = os.path.join(tmpdir_source, "regions-source-%d" % os.getpid())

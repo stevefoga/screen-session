@@ -20,7 +20,7 @@
 
 import sys
 from . import GNUScreen as sc
-from .ScreenSaver import ScreenSaver
+from ScreenSaver import ScreenSaver
 from . import tools
 from . import util 
 

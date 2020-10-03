@@ -30,9 +30,9 @@ import shutil
 import tempfile
 import traceback
 import re
-from .ScreenSaver import ScreenSaver
-from .util import *
-from .util import tmpdir
+from ScreenSaver import ScreenSaver
+from util import *
+from util import tmpdir
 from . import util
 from . import GNUScreen as sc
 

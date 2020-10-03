@@ -21,8 +21,8 @@
 import os
 import sys
 from . import GNUScreen as sc
-from .util import tmpdir, tmpdir_source, remove
-from .ScreenSaver import ScreenSaver
+from util import tmpdir, tmpdir_source, remove
+from ScreenSaver import ScreenSaver
 
 
 def nest_layout(session, src_layuot, dst_layout):
