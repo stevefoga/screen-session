@@ -33,8 +33,8 @@ import re
 from ScreenSaver import ScreenSaver
 from util import *
 from util import tmpdir
-from . import util
-from . import GNUScreen as sc
+import util
+import GNUScreen as sc
 
 
 def doexit(var=0):

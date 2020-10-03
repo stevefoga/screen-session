@@ -20,7 +20,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from ScreenSaver import ScreenSaver
-from . import GNUScreen as sc
+import GNUScreen as sc
 import os
 from sys import stderr
 

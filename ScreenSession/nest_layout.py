@@ -20,7 +20,7 @@
 
 import os
 import sys
-from . import GNUScreen as sc
+import GNUScreen as sc
 from util import tmpdir, tmpdir_source, remove
 from ScreenSaver import ScreenSaver
 

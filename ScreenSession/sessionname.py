@@ -20,7 +20,7 @@
 
 import os
 import sys
-from . import GNUScreen as sc
+import GNUScreen as sc
 from util import timeout_command
 from GNUScreen import SCREEN
 

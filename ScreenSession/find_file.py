@@ -19,7 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
-from . import tools
+import tools
 
 session = (sys.argv)[1]
 files = (sys.argv)[2:]

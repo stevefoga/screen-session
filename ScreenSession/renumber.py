@@ -20,7 +20,7 @@
 
 import os
 import sys
-from . import tools
+import tools
 session = (sys.argv)[1]
 
 tools.renumber(session, tools.require_dumpscreen_window(session, False))

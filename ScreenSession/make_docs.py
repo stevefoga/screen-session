@@ -21,7 +21,7 @@
 import sys
 import inspect
 import re
-from . import help
+import help
 
 TITLE = "screen-session"
 

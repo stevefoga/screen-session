@@ -28,9 +28,9 @@ import pwd
 import mmap
 import string
 import signal
-from . import GNUScreen as sc
-from .GNUScreen import SCREEN
-from . import util
+import GNUScreen as sc
+from GNUScreen import SCREEN
+import util
 from util import tmpdir
 from ScreenSaver import ScreenSaver
 from help import VERSION

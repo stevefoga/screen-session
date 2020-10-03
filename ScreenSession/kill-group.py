@@ -19,8 +19,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
-from . import tools
-from . import util
+import tools
+import util
 
 session = (sys.argv)[1]
 

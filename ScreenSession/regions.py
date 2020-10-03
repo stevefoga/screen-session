@@ -27,7 +27,7 @@ import tempfile
 import pwd
 import copy
 from util import tmpdir, tmpdir_source, remove
-from . import GNUScreen as sc
+import GNUScreen as sc
 from GNUScreen import SCREEN
 from ScreenSaver import ScreenSaver
 

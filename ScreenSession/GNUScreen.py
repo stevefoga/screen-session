@@ -27,7 +27,7 @@ from util import tmpdir, tmpdir_source, removeit, remove
 
 SCREEN = os.getenv('SCREENBIN')
 if not SCREEN:
-    from .util import which
+    from util import which
     SCREEN = which('screen')[0]
 
 layout_files_prefix = os.path.join(tmpdir_source, "layout-")
